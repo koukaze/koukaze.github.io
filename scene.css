@@ -1,0 +1,68 @@
+/* This variant has its own palette and navigation. The continuous draft is unchanged. */
+:root{--header-height:82px;--scene-ease:cubic-bezier(.22,.72,.18,1)}
+.scene-controls,.scene-line{display:none}
+html.scene-mode{height:100%;overflow:hidden;scroll-behavior:auto}
+.scene-mode body{height:100%;overflow:hidden;overscroll-behavior:none}
+.scene-mode #main{position:fixed;top:var(--header-height);bottom:0;left:0;right:0;overflow:hidden;isolation:isolate;outline:none}
+.scene-mode #main>section{position:absolute;inset:0;display:none;height:100%;min-height:0;max-height:none;overflow-x:hidden;overflow-y:auto;overscroll-behavior:none;scrollbar-width:thin;scrollbar-color:#9d95aa55 transparent;scroll-behavior:auto}
+.scene-mode #main>section.is-current,.scene-mode #main>section.scene-leaving{display:block}
+.scene-mode #main>section.is-current{z-index:2}
+.scene-mode #main>section.scene-leaving{z-index:1;pointer-events:none}
+.scene-mode .hero{padding-top:0}
+.scene-mode .hero:before{inset:0}
+.scene-mode .hero:after{top:0}
+.scene-mode .hero-inner{min-height:620px;padding-top:28px;padding-bottom:154px}
+.scene-mode h1{font-size:clamp(92px,10.6vw,156px)}
+.scene-mode .hero-description{font-size:18px;margin-top:24px}
+.scene-mode .hero-kicker{margin-bottom:24px}
+.scene-mode .hero-actions{margin-top:24px}
+.scene-mode .hero-bottom{bottom:66px}
+.scene-mode .hero-scroll{display:none}
+.scene-mode .hero-art{top:7%;height:78%}
+.scene-mode .art-label{top:10%}
+.scene-mode .art-caption{bottom:24%}
+.scene-mode .research,.scene-mode .studies,.scene-mode .education{padding:62px 0 106px}
+.scene-mode .education>.wrap,.scene-mode .studies>.wrap{min-height:100%;display:flex;flex-direction:column;justify-content:center}
+.scene-mode .section-head{margin-bottom:40px}
+.scene-mode .research .section-head{margin-bottom:0}
+.scene-mode .contact{padding:0;min-height:0}
+.scene-mode .contact>.wrap{min-height:calc(100% - 112px);padding-top:90px;padding-bottom:75px;display:flex;flex-direction:column;justify-content:center}
+.scene-mode .contact .footer{color:#795c77;border-top:1px solid #8b687c40;margin:0 7.5%;padding:22px 0 70px}
+.scene-mode .contact .footer a{color:#5e3f60}
+.scene-mode .scene-controls{position:fixed;z-index:28;left:4%;right:4%;bottom:0;height:48px;display:flex;align-items:center;gap:25px;border-top:1px solid #aca5b933;background:#16131be8;backdrop-filter:blur(12px);color:#c3bdcc;font-family:var(--mono);font-size:9px;letter-spacing:.09em}
+.scene-controls .chapter{display:flex;gap:11px;align-items:center;min-width:172px}
+.scene-controls .chapter strong{font-family:var(--display);font-size:26px;font-weight:400;color:var(--accent)}
+.scene-controls .chapter span{text-transform:uppercase}
+.scene-controls .scroll-hint{margin-left:auto;text-transform:uppercase;font-size:8px;color:#afa9ba;letter-spacing:.1em}
+.scene-controls .page-buttons{display:flex;gap:6px}
+.scene-controls button{height:34px;width:38px;border:1px solid #9c94a844;background:transparent;color:var(--accent);font-size:19px;line-height:1;transition:background .2s}
+.scene-controls button:hover{background:#b5abc71c}
+.scene-controls button:disabled{opacity:.2}
+.scene-mode .section-rail{gap:19px}
+.scene-mode .section-rail a{color:#8c8597;transition:color .3s}
+.scene-mode .section-rail a.active{color:var(--accent)}
+.scene-mode .section-rail a[data-surface="light"]{color:#876579}
+.scene-mode .section-rail a.active[data-surface="light"]{color:#70314e}
+.scene-mode .scene-line{display:block;position:fixed;left:0;right:0;top:var(--header-height);bottom:0;z-index:20;pointer-events:none;overflow:hidden}
+.scene-line:after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,transparent,#f5dce375 25%,#f5dce3 80%,transparent);opacity:0}
+.scene-changing .scene-line:after{animation:section-seam 940ms var(--scene-ease) both}
+.scene-mode .scene-entering{animation:scene-in 960ms var(--scene-ease) both}
+.scene-mode .scene-leaving{animation:scene-out 690ms var(--scene-ease) both}
+.scene-entering .section-head,.scene-entering .hero-kicker,.scene-entering h1,.scene-entering .contact .eyebrow{animation:layer-in 780ms var(--scene-ease) 180ms both}
+.scene-entering .hero-description,.scene-entering .hero-actions,.scene-entering .contact-inner,.scene-entering .research-entry,.scene-entering .study-item,.scene-entering .degree,.scene-entering .education-foot{animation:layer-in 800ms var(--scene-ease) 240ms both}
+.scene-entering .research-entry:nth-child(2),.scene-entering .study-item:nth-child(2),.scene-entering .degree:nth-child(2){animation-delay:300ms}
+.scene-entering .research-entry:nth-child(3),.scene-entering .study-item:nth-child(3){animation-delay:360ms}
+.scene-entering .hero-art{animation:art-in 1150ms var(--scene-ease) both}
+.scene-entering .hero-bottom,.scene-entering .art-label,.scene-entering .art-caption{animation:layer-in 850ms var(--scene-ease) 310ms both}
+.scene-controls .live-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@keyframes scene-in{from{opacity:0;clip-path:inset(13% 0 0);transform:translateY(var(--scene-offset,36px))}45%{opacity:1}to{opacity:1;clip-path:inset(0);transform:translateY(0)}}
+@keyframes scene-out{to{opacity:0;transform:translateY(calc(var(--scene-offset,36px) * -.7)) scale(.985)}}
+@keyframes layer-in{from{opacity:0;transform:translateY(var(--scene-offset,36px))}to{opacity:1;transform:translateY(0)}}
+@keyframes art-in{from{opacity:0;transform:translateX(60px) scale(1.07)}to{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes section-seam{0%{opacity:0;transform:translateY(32vh) scaleX(.4)}25%{opacity:.8}100%{opacity:0;transform:translateY(-42vh) scaleX(1)}}
+@media(min-width:761px) and (max-height:730px){.scene-mode .hero-inner{min-height:500px;padding-top:22px;padding-bottom:120px}.scene-mode h1{font-size:clamp(82px,9vw,118px)}.scene-mode .hero-kicker{margin-bottom:17px}.scene-mode .hero-description{font-size:16px;margin-top:18px;max-width:430px}.scene-mode .hero-actions{margin-top:18px}.scene-mode .hero-bottom{bottom:59px;padding-top:12px}.scene-mode .hero-art{height:83%;top:3%}.scene-mode .hero-degrees{font-size:9px}}
+@media(max-width:760px){:root{--header-height:70px}.scene-mode .hero-inner{height:100%;min-height:620px;padding-top:52px;padding-bottom:158px;justify-content:flex-start}.scene-mode h1{font-size:clamp(80px,21vw,122px)}.scene-mode .hero-description{font-size:16px;margin-top:24px}.scene-mode .hero-kicker{font-size:8px;margin-bottom:24px}.scene-mode .hero-actions{margin-top:24px}.scene-mode .hero-art{top:64px;height:440px;opacity:.24}.scene-entering .hero-art{animation-name:mobile-art-in}.scene-mode .hero-bottom{bottom:68px;padding-top:15px}.scene-mode .hero-bottom .hero-degrees{margin-top:0;font-size:8px}.scene-mode .art-label{top:auto;bottom:154px;font-size:7px}.scene-mode .research,.scene-mode .studies,.scene-mode .education{padding:42px 0 95px}.scene-mode .section-head h2{font-size:43px}.scene-mode .section-head .section-intro{margin-top:17px}.scene-mode .contact>.wrap{min-height:calc(100% - 140px);padding-top:55px;padding-bottom:48px}.scene-mode .contact .footer{margin:0 7%;padding-bottom:80px}.scene-mode .scene-controls{left:6%;right:6%;gap:8px;height:47px}.scene-controls .chapter{min-width:0;gap:8px}.scene-controls .chapter strong{font-size:22px}.scene-controls .chapter span{font-size:8px}.scene-controls .scroll-hint{font-size:7px;max-width:88px;text-align:right;line-height:1.5}.scene-controls button{height:30px;width:30px;font-size:17px}.scene-controls .page-buttons{gap:4px}.scene-mode .contact-links{padding-top:30px}}
+@keyframes mobile-art-in{from{opacity:0;transform:translateX(35px) scale(1.07)}to{opacity:.24;transform:translateX(0) scale(1)}}
+@media(max-height:690px) and (max-width:760px){.scene-mode .hero-inner{min-height:560px;padding-top:28px;padding-bottom:138px}.scene-mode h1{font-size:76px}.scene-mode .hero-description{font-size:14px;margin-top:20px}.scene-mode .hero-kicker{margin-bottom:19px}.scene-mode .hero-actions{margin-top:20px}.scene-mode .hero-bottom{position:static;margin:0 7%;padding:20px 0 75px}.scene-mode .hero .art-label{display:none}}
+@media(prefers-reduced-motion:reduce){.scene-mode *, .scene-mode *:before,.scene-mode *:after{animation:none!important;transition:none!important}.scene-line{display:none!important}}
+@media print{html.scene-mode,.scene-mode body{height:auto;overflow:visible}.scene-mode #main{position:static;overflow:visible}.scene-mode #main>section{display:block!important;position:static;height:auto;min-height:0;overflow:visible;transform:none!important;clip-path:none!important;opacity:1!important}.scene-mode .hero-inner{min-height:0}.scene-controls,.scene-line{display:none!important}.scene-mode .contact>.wrap,.scene-mode .education>.wrap,.scene-mode .studies>.wrap{min-height:0;display:block}.scene-mode .hero-bottom{position:static}.scene-mode .research,.scene-mode .studies,.scene-mode .education{padding:30px 0}}
