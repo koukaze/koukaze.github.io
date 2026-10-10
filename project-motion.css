@@ -1,8 +1,9 @@
 .scene-mode .studies>.wrap{justify-content:flex-start}
 .projects-motion .study-item{position:relative;isolation:isolate;box-sizing:border-box;overflow-anchor:none}
 .projects-motion .study-item.is-animating{overflow:hidden}
-.projects-motion .study-item:before{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;z-index:2;background:linear-gradient(90deg,var(--accent),#f5dce329 75%,transparent);transform:scaleX(0);transform-origin:left;transition:transform 420ms cubic-bezier(.2,.7,.2,1);pointer-events:none}
-.projects-motion .study-item.is-open-target:before{transform:scaleX(1)}
+.projects-motion .study-item:before,.projects-motion .study-item:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;z-index:2;background:linear-gradient(90deg,var(--accent),#f5dce329 75%,transparent);transform:scaleX(0);transform-origin:left;transition:transform 420ms cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.projects-motion .study-item:after{top:0;bottom:auto}
+.projects-motion .study-item.is-open-target:before,.projects-motion .study-item.is-open-target:after{transform:scaleX(1)}
 .projects-motion .study-item h3{transition:color 240ms ease,transform 350ms cubic-bezier(.2,.7,.2,1)}
 .projects-motion .study-item .study-id{transition:color 240ms ease}
 .projects-motion .study-item.is-open-target h3{color:var(--accent);transform:translateX(5px)}
@@ -11,4 +12,4 @@
 .projects-motion .study-item.is-open-target .study-plus{transform:rotate(45deg)}
 .projects-motion .study-item summary:focus-visible{outline:1px solid var(--accent);outline-offset:5px}
 .projects-motion .study-body{position:relative}
-@media(prefers-reduced-motion:reduce){.projects-motion .study-item:before,.projects-motion .study-item h3,.projects-motion .study-item .study-id,.projects-motion .study-item .study-plus{transition:none}}
+@media(prefers-reduced-motion:reduce){.projects-motion .study-item:before,.projects-motion .study-item:after,.projects-motion .study-item h3,.projects-motion .study-item .study-id,.projects-motion .study-item .study-plus{transition:none}}
