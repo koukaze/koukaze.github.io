@@ -2,7 +2,7 @@
 
 Academic homepage: [koukaze.github.io](https://koukaze.github.io/).
 
-A static site presenting research experience, selected coursework, group projects and education. Styles and JavaScript are served directly; no build step is required.
+A static site presenting research experience, code projects and education. Styles and JavaScript are served directly; no build step is required.
 
 ## Local preview
 

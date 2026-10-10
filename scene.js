@@ -7,7 +7,7 @@
   const menu = document.querySelector('.menu-toggle');
   const nav = document.getElementById('primary-nav');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const labels = ['Introduction', 'Research', 'Coursework', 'Education', 'Contact'];
+  const labels = ['Introduction', 'Research', 'Projects', 'Education', 'Contact'];
   const indexFromHash = () => Math.max(0, sections.findIndex(s => '#' + s.id === location.hash));
   let current = indexFromHash();
   let busy = false;
